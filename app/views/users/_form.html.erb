@@ -1,0 +1,13 @@
+<% semantic_form_for(@user) do |form| %>
+    <% form.inputs do %>
+      <%= form.input :username, :label => 'Username' %>
+      <%= form.input :nom, :label => 'Nom' %>
+      <%= form.input :prenom, :label => 'Prenom' %>
+      <%= form.input :email, :label => 'Email' %>
+      <%= form.input :promotion, :label => 'Promotion' %>
+      <%= form.input :equipe, :label => 'Equipe' %>
+      <%= form.input :password, :label => 'Password' %>
+      <%= form.input :password_confirmation, :label => 'Confirmation' %>
+    <% end %>
+    <%= form.buttons %>
+<% end %>

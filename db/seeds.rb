@@ -19,3 +19,19 @@ puts "Création des équipes ..."
   Equipe.find_or_create_by_equipe(equipe)
 end
 puts "Ok !"
+
+puts "Creation d'une promotion ..."
+promo = Promotion.find_or_initialize_by_name('05D')
+promo.affectation = Date.new(2007, 11, 21)
+puts "Ok !" if promo.save!
+
+puts "Creation d'un utilisateur ..."
+user = User.find_or_initialize_by_username('kouak')
+user.nom = 'Beret'
+user.prenom = 'Benjamin'
+user.equipe = Equipe.find_by_equipe(11)
+user.promotion = Promotion.find_by_name('05D')
+user.email = "benjamin.beret@gmail.com"
+user.password = "123456"
+user.password_confirmation = user.password
+puts "Ok !" if user.save!

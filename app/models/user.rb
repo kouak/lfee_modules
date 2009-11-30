@@ -1,7 +1,13 @@
 class User < ActiveRecord::Base
+  # associations
   belongs_to :equipe
   belongs_to :promotion
   has_many :work_sessions
+  
+  # behaviors
+  acts_as_authentic
+  
+  
   # Nom, prenom validation
   validates_presence_of :nom, :prenom
   validates_length_of :nom, :prenom, :maximum => 30
