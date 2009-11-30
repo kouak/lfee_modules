@@ -4,10 +4,11 @@
       <%= form.input :nom, :label => 'Nom' %>
       <%= form.input :prenom, :label => 'Prenom' %>
       <%= form.input :email, :label => 'Email' %>
-      <%= form.input :promotion, :label => 'Promotion' %>
-      <%= form.input :equipe, :label => 'Equipe' %>
+      <%= form.input :promotion, :label => 'Promotion', :include_blank => 'Ma promotion n\'existe pas ?'%>
+      <%= form.input :equipe, :label => 'Equipe', :include_blank => false %>
       <%= form.input :password, :label => 'Password' %>
       <%= form.input :password_confirmation, :label => 'Confirmation' %>
+      <%= form.input :role, :as => :select, :include_blank => false %>
     <% end %>
     <%= form.buttons %>
 <% end %>

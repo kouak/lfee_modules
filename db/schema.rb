@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091130173611) do
+ActiveRecord::Schema.define(:version => 20091130190837) do
 
   create_table "equipes", :force => true do |t|
     t.integer  "equipe"
@@ -20,6 +20,19 @@ ActiveRecord::Schema.define(:version => 20091130173611) do
   create_table "promotions", :force => true do |t|
     t.string   "name"
     t.date     "affectation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles_users", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "role_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -51,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20091130173611) do
     t.string   "persistence_token"
     t.datetime "last_request_at"
     t.string   "single_access_token"
+    t.integer  "role_id"
   end
 
   create_table "work_sessions", :force => true do |t|

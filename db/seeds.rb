@@ -8,24 +8,25 @@
 
 puts "Création des secteurs ..."
 ["2F", "3E", "4R", "FIR", "3H", "4N"].each do |secteur|
-  puts "#{secteur} ..."
-  Secteur.find_or_create_by_name(secteur)
+  puts "#{secteur} ... Ok !" if Secteur.find_or_create_by_name(secteur)
 end
-puts "Ok !"
 
-puts "Création des équipes ..."
+puts "\nCréation des équipes ..."
 (1..12).each do |equipe|
-  puts "#{equipe} ..."
-  Equipe.find_or_create_by_equipe(equipe)
+  puts "#{equipe} ... Ok !" if Equipe.find_or_create_by_equipe(equipe)
 end
-puts "Ok !"
 
-puts "Creation d'une promotion ..."
+puts "\nCreation d'une promotion ..."
 promo = Promotion.find_or_initialize_by_name('05D')
 promo.affectation = Date.new(2007, 11, 21)
 puts "Ok !" if promo.save!
 
-puts "Creation d'un utilisateur ..."
+puts "\nCreation des roles ..."
+["Administrateur", "Utilisateur"].each do |r|
+  puts "#{r} ... Ok !" if Role.find_or_create_by_name(r)
+end
+
+puts "\nCreation d'un utilisateur ..."
 user = User.find_or_initialize_by_username('kouak')
 user.nom = 'Beret'
 user.prenom = 'Benjamin'
@@ -34,4 +35,5 @@ user.promotion = Promotion.find_by_name('05D')
 user.email = "benjamin.beret@gmail.com"
 user.password = "123456"
 user.password_confirmation = user.password
+user.role = Role.find_by_name('Administrateur')
 puts "Ok !" if user.save!

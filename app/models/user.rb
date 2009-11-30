@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   # associations
   belongs_to :equipe
   belongs_to :promotion
+  belongs_to :role
   has_many :work_sessions
   
   # behaviors
