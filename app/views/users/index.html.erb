@@ -1,0 +1,24 @@
+<h1>Listing users</h1>
+
+<table>
+    <tr>
+      <th>Nom</th>
+      <th>Equipe</th>
+      <th>Promo</th>
+    </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td><%= link_to h(user), user %></td>
+    <td><%= link_to h(user.equipe), user.equipe %></td>
+    <td><%= link_to h(user.promotion), user.promotion %></td>
+    <td><%= link_to 'Détails', user %></td>
+    <td><%= link_to 'Editer', edit_user_path(user) %></td>
+    <td><%= link_to 'Supprimer', user, :confirm => 'Etes-vous sûr ?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Ajouter un utilisateur', new_user_path %>

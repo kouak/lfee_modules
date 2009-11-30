@@ -1,0 +1,20 @@
+<% content_for :title do %>
+  Promotion - <%= @promotion.name %>
+<% end %>
+<p>
+  <b>Promotion:</b>
+  <%=h @promotion.name %>
+</p>
+
+<p>
+  <b>Affectation:</b>
+  <%=h @promotion.affectation %>
+</p>
+
+<h3><%= pluralize @promotion.users.count, 'membre' %></h3>
+<% @promotion.users.each do |user| %>
+  <p><%= link_to user, user %> (équipe <%= link_to user.equipe.to_s, user.equipe %>)</p>
+<% end %>
+
+<%= link_to 'Editer', edit_promotion_path(@promotion) %> |
+<%= link_to 'Retour', promotions_path %>

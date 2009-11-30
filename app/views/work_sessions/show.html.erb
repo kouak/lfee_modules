@@ -1,0 +1,28 @@
+<% title "Work Session" %>
+
+<p>
+  <strong>Date:</strong>
+  <%=h @work_session.date %>
+</p>
+<p>
+  <strong>Durée:</strong>
+  <%= @work_session.timespan.seconds %>
+</p>
+<p>
+  <strong>Position:</strong>
+  <%=h @work_session.position %>
+</p>
+<p>
+  <strong>Secteur:</strong>
+  <%= @work_session.secteurs.join('+') %>
+</p>
+<p>
+  <strong>User:</strong>
+  <%= link_to h(@work_session.user), @work_session.user %>
+</p>
+
+<p>
+  <%= link_to "Editer", edit_work_session_path(@work_session) %> |
+  <%= link_to "Supprimer", @work_session, :confirm => 'Etes-vous sûr?', :method => :delete %> |
+  <%= link_to "Voir tous", work_sessions_path %>
+</p>

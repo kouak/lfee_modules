@@ -1,0 +1,15 @@
+<% semantic_form_for @work_session do |f| %>
+  <%= f.error_messages %>
+  <% f.inputs do %>
+    <%= f.input :user, :label => 'Module'%>
+    <%= f.input :date, :as => :string, :value => 'caca' %>
+    <%
+        durees = (1..24).map {|b| [sprintf('%02dh%02d', *(b*15).divmod(60)), b*60*15]}
+        # [['00h15', 900], ['00h30', 1800] ...]
+    %>
+    <%= f.input :timespan, :label => 'Durée', :as => :select, :collection => durees, :selected => 900, :include_blank => false %>
+    <%= f.input :position, :as => :select, :collection => ['CR', 'CO'], :selected => 'CR', :include_blank => false %>
+    <%= f.input :secteurs, :as => :check_boxes %>
+  <% end %>
+  <%= f.buttons %>
+<% end %>

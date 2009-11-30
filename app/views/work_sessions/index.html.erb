@@ -1,0 +1,25 @@
+<% title "Work Sessions" %>
+
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Durée</th>
+    <th>Position</th>
+    <th>Elève</th>
+    <th>Secteurs</th>
+  </tr>
+  <% for work_session in @work_sessions %>
+    <tr>
+      <td><%=h work_session.date %></td>
+      <td><%=h work_session.timespan %></td>
+      <td><%=h work_session.position %></td>
+      <td><%= link_to work_session.user, work_session.user %></td>
+      <td><%= work_session.secteurs.map! { |s| link_to s, s}.join(', ') %>
+      <td><%= link_to "Afficher", work_session %></td>
+      <td><%= link_to "Editer", edit_work_session_path(work_session) %></td>
+      <td><%= link_to "Supprimer", work_session, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Work Session", new_work_session_path %></p>

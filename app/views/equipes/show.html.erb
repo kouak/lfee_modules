@@ -1,0 +1,11 @@
+<p>
+  <b>Equipe:</b>
+  <%=h @equipe.equipe %>
+</p>
+
+<h3><%= pluralize @equipe.users.count, 'membre' %></h3>
+<% @equipe.users.each do |user| %>
+<p><%= link_to user, user %> (promo <%= link_to user.promotion, user.promotion %>)</p>
+<% end %>
+<%= link_to 'Edit', edit_equipe_path(@equipe) %> |
+<%= link_to 'Back', equipes_path %>
