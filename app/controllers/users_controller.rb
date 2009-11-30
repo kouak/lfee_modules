@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  
+  filter_access_to :all
+  
   # GET /users
   # GET /users.xml
   def index
@@ -34,7 +37,7 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     # TODO : authorization
-    if params[:id] == 'current'
+    if params[:id] == "current"
       @user = current_user
     else
       @user = User.find(params[:id])

@@ -1,4 +1,6 @@
 class WorkSessionsController < ApplicationController
+  filter_resource_access
+  
   def index
     @work_sessions = WorkSession.all
   end

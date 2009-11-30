@@ -18,6 +18,14 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username, :allow_nil => true, :allow_blank => true
   validates_length_of :username, :in => 4..30, :allow_nil => true, :allow_blank => true
   
+  def role_symbols
+    if role
+      [role.to_sym]
+    else
+      [:user]
+    end
+  end
+  
   def to_label
     prenom.titleize + ' ' + nom.upcase
   end
