@@ -11,7 +11,10 @@
       <div id="user_nav">
         <% if current_user %>
           <%= current_user %> |
-          <%= link_to "Mon profil", edit_user_path(:current)%> |
+          <% if has_role? :administrateur %>
+            <%= link_to 'Administration', '/admin' %> |
+          <% end %>
+          <%= link_to "Mon profil", myprofile_path %> |
           <%= link_to "Logout", logout_path %>
         <% else %>
           <%= link_to "S'enregistrer", new_user_path %> |

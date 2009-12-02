@@ -1,6 +1,4 @@
-<% content_for :title do %>
-  Utilisateur - <%= @user %>
-<% end %>
+<% title "Utilisateur - #{@user}" %>
 <p>
   <b>Utilisateur:</b>
   <%=h @user.username %>
@@ -9,11 +7,6 @@
 <p>
   <b>Nom:</b>
   <%=h @user.to_label %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%=h @user.email %>
 </p>
 
 <p>
@@ -27,22 +20,6 @@
 </p>
 
 <p>
-  <b>Sessions de travail:</b>
-  <br />
-  <table>
-    <tr>
-      <th>Date</th>
-      <th>Secteur</th>
-      <th>Durée</th>
-    </tr>
-    <% @user.work_sessions.each do |work_session| %>
-      <tr>
-        <td><%= work_session.date %></td>
-        <td><%= work_session.secteurs.join(', ') %></td>
-        <td><%= work_session.timespan.seconds %></td>
-      </tr>
-    <% end %>
-  </table>
+  <b>Autorisations</b>
+  <%= @user.role %>
 </p>
-<%= link_to 'Editer', edit_user_path(@user) %> |
-<%= link_to 'Retour', users_path %>

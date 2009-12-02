@@ -83,4 +83,5 @@ a {
 #user_nav {
 	float: right;
 	font-size: 12px;
+	clear: both;
 }

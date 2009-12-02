@@ -37,3 +37,29 @@ user.password = "123456"
 user.password_confirmation = user.password
 user.role = Role.find_by_name('Administrateur')
 puts "Ok !" if user.save!
+
+puts "\nCreation d'un utilisateur ..."
+user = User.find_or_initialize_by_username('SimpleUser')
+user.nom = 'User'
+user.prenom = 'Simple'
+user.equipe = Equipe.find_by_equipe(3)
+user.promotion = Promotion.find_by_name('05D')
+user.email = "benjamin.beret0@gmail.com"
+user.password = "123456"
+user.password_confirmation = user.password
+user.role = Role.find_by_name('Utilisateur')
+puts "Ok !" if user.save!
+
+puts "\nCreation d'utilisateurs multiples ..."
+(1..10).each do |i|
+  user = User.find_or_initialize_by_username("SimpleUser#{i}")
+  user.nom = "User#{i}"
+  user.prenom = 'Simple'
+  user.equipe = Equipe.find_by_equipe(rand(12) + 1)
+  user.promotion = Promotion.find_by_name('05D')
+  user.email = "benjamin.beret#{i}@gmail.com"
+  user.password = '123456'
+  user.password_confirmation = user.password
+  user.role = Role.find_by_name('Utilisateur')
+  puts "#{i} Ok !" if user.save!
+end

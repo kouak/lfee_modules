@@ -1,17 +1,27 @@
 ActionController::Routing::Routes.draw do |map|
 
-  map.resources :roles
+  map.namespace(:admin) do |admin| 
+    admin.root :controller => 'users', :action => 'index'
+    admin.resources :users
+    admin.resources :promotions
+  end
+
+  map.resources :roles, :only => [:show, :index]
 
   
   map.login "login", :controller => 'user_sessions', :action => 'new'
   map.logout "logout", :controller => 'user_sessions', :action => 'destroy'
+  map.myprofile "profil", :controller => 'users', :action => 'profile'
+  map.edit_myprofile "profil/edit", :controller => 'users', :action => 'edit'
   
   map.resources :user_sessions
-  map.resources :work_sessions
-  map.resources :secteurs
-  map.resources :promotions
-  map.resources :users
-  map.resources :equipes
+  map.resources :work_sessions, :only => [:show, :index, :create, :new]
+  map.resources :secteurs, :only => [:show, :index]
+  map.resources :promotions, :only => [:show, :index]
+  map.resources :users, :only => [:index, :show, :new, :update] do |users|
+    users.resources :work_sessions
+  end
+  map.resources :equipes, :only => [:show, :index]
 
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -46,7 +56,7 @@ ActionController::Routing::Routes.draw do |map|
   #   end
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-  map.root :controller => "secteurs", :action => 'index'
+  map.root :controller => 'static', :action => :homepage
 
   # See how all your routes lay out with "rake routes"
 

@@ -1,0 +1,17 @@
+<% title "Admin/Work Sessions" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for admin/work_sessions in @admin/work_sessions %>
+    <tr>
+      <td><%=h admin/work_sessions.name %></td>
+      <td><%= link_to "Show", admin/work_sessions %></td>
+      <td><%= link_to "Edit", edit_admin/work_sessions_path(admin/work_sessions) %></td>
+      <td><%= link_to "Destroy", admin/work_sessions, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Admin/Work Sessions", new_admin/work_sessions_path %></p>

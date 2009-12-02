@@ -1,0 +1,51 @@
+<% title "Utilisateur - #{@user}" %>
+<p>
+  <b>Utilisateur:</b>
+  <%=h @user.username %>
+</p>
+
+<p>
+  <b>Nom:</b>
+  <%=h @user.to_label %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%=h @user.email %>
+</p>
+
+<p>
+  <b>Equipe:</b>
+  <%=link_to h(@user.equipe), @user.equipe %>
+</p>
+
+<p>
+  <b>Promo:</b>
+  <%=link_to h(@user.promotion), @user.promotion %>
+</p>
+
+<p>
+  <b>Autorisations:</b>
+  <%= @user.role %>
+</p>
+
+<p>
+  <b>Sessions de travail:</b>
+  <br />
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Secteur</th>
+      <th>Durée</th>
+    </tr>
+    <% @user.work_sessions.each do |work_session| %>
+      <tr>
+        <td><%= work_session.date %></td>
+        <td><%= work_session.secteurs.join(', ') %></td>
+        <td><%= work_session.timespan.seconds %></td>
+      </tr>
+    <% end %>
+  </table>
+</p>
+<%= link_to 'Editer', edit_myprofile_path %> |
+<%= link_to 'Retour à mon profil', myprofile_path %>

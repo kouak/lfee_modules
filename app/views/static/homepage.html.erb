@@ -1,0 +1,12 @@
+<h1>Gestion des heures de contrôle</h1>
+<p>
+  Ce site permet le recensement des heures de contrôle effectuées par les élèves contrôleurs du CRNA-EST
+</p>
+<div id="login">
+  <h2>Identification</h2>
+  <%= render :partial => "user_sessions/form" %>
+</div>
+<div id="register">
+  <h2>Première fois sur ce site ?</h2>
+  <p><%= link_to 'Enregistrez-vous !', new_user_path %>
+</div>

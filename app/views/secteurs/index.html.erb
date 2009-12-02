@@ -8,10 +8,6 @@
     <tr>
       <td><%=h secteur.name %></td>
       <td><%= link_to "Show", secteur %></td>
-      <td><%= link_to "Edit", edit_secteur_path(secteur) %></td>
-      <td><%= link_to "Destroy", secteur, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% end %>
 </table>
-
-<p><%= link_to "New Secteur", new_secteur_path %></p>

@@ -23,6 +23,8 @@ Rails::Initializer.run do |config|
   config.gem "validation_reflection" # Formtastic addon (required fields)
   config.gem "authlogic" # Authentification
   config.gem "declarative_authorization" # Authorization
+  config.gem 'will_paginate' # Pagination
+  
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]

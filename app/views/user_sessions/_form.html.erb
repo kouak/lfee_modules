@@ -1,0 +1,8 @@
+<% semantic_form_for @user_session do |f| %>
+  <%= f.error_messages %>
+  <% f.inputs do %>
+    <%= f.input :username %><br />
+    <%= f.input :password %>
+  <% end %>
+  <p><%= f.submit "Submit" %></p>
+<% end %>

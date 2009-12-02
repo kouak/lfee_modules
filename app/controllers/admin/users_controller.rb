@@ -1,45 +1,49 @@
-class UsersController < ApplicationController
+class Admin::UsersController < ApplicationController
 
-
-  before_filter :load_user, :except => [:new, :create, :update]
-  
   filter_access_to :all
-  filter_access_to :update, :attribute_check => true
   
-  private
-  def load_user # This is executed BEFORE authorization hence the unless
-    @user = UserSession.find.user unless UserSession.find.nil?
+  # GET /users
+  # GET /users.xml
+  def index
+    @users = User.paginated_sort_by(params[:order_by] || 'nom', params[:order] || 'asc', {:page => params[:page], :include => [{:work_sessions => :secteurs}, :equipe, :promotion]})
+    
+    #@users = User.paginate :page => params[:page], :order => 'nom ASC'
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @users }
+    end
   end
   
-  public
-  # GET /profil
-  def profile
+  # GET /users/1
+  # GET /users/1.xml
+  def show
+    @user = User.find(params[:id], :include => [:equipe, :promotion, :work_sessions], :order => 'work_sessions.date ASC')
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @user }
     end
   end
 
-  # GET /users/1
-  # GET /users/1.xml
-  def show
-    @user = User.find(params[:id])
-  end
-  
   # GET /users/new
   # GET /users/new.xml
   def new
     @user = User.new
-    
+
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @user }
     end
   end
 
-  # GET /profil/edit
+  # GET /users/1/edit
   def edit
-    
+    # TODO : authorization
+    if params[:id] == "current"
+      @user = current_user
+    else
+      @user = User.find(params[:id])
+    end
   end
 
   # POST /users
@@ -67,7 +71,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update_attributes(params[:user])
         flash[:notice] = 'User was successfully updated.'
-        format.html { redirect_to(myprofile_path) }
+        format.html { redirect_to(@user) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
